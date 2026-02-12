@@ -1,188 +1,182 @@
-🕵️ SecureNotifyVault (Stealth Spyware PoC)
+מעולה. הבנתי את הסגנון שאתה רוצה — נקי, מופרד עם קווים, Table of Contents אמיתי, כותרות ברורות, בולטים מסודרים.
 
-Proof-of-Concept Android application demonstrating mobile data collection, stealth techniques, encryption, and anti-forensic mechanisms.
+הנה גרסה כתובה בדיוק בפורמט כזה:
 
-📖 Overview
+SecureNotifyVault
 
-SecureNotifyVault presents itself as a fully functional Calculator application.
-Behind the scenes, it operates as a silent intelligence-gathering tool.
+SecureNotifyVault is an Android Proof-of-Concept application developed for academic evaluation in Mobile Security.
+The project demonstrates stealth behavior, encrypted persistence, background monitoring, and intrusion detection mechanisms.
+
+Table of Contents
+
+Overview
+
+Features
+
+Architecture
+
+Usage
+
+Build Configuration
+
+Academic Context
+
+Disclaimer
+
+Overview
+
+SecureNotifyVault presents a functional Calculator interface while internally demonstrating controlled offensive security techniques.
 
 The application:
 
-Intercepts incoming notifications (WhatsApp, Telegram, SMS, etc.)
+Monitors incoming notifications
 
-Analyzes content for sensitive keywords
+Performs keyword-based content analysis
 
-Encrypts and stores collected data locally
+Encrypts collected data locally
 
-Captures photos of unauthorized users attempting to access the vault
+Detects unauthorized access attempts
 
-This project demonstrates advanced Offensive Mobile Security concepts including:
+Simulates controlled data export
 
-Stealth persistence
+This project was implemented strictly for academic and research purposes.
 
-Encrypted local storage
+Features
+Stealth Behavior
 
-Sensor-triggered defensive behavior
+Calculator-based disguise interface
 
-Simulated data exfiltration
+Hidden dashboard accessible via secret PIN
 
-🚀 Key Security Features
-1️⃣ Stealth & Camouflage 🎭
+Excluded from Recent Apps (excludeFromRecents)
 
-Disguise – Fully working Calculator interface.
+Release build obfuscated using R8
 
-Ghost Mode – Excluded from the Recent Apps list
-(android:excludeFromRecents="true").
+Notification Monitoring
 
-Code Obfuscation – Release APK compiled with R8/ProGuard to prevent reverse engineering.
+Implemented via NotificationListenerService
 
-2️⃣ Intelligence Gathering 👂
+Filters duplicate/system notifications
 
-Notification Interception
-Uses NotificationListenerService to capture messages from:
+Flags predefined sensitive keywords
 
-WhatsApp
+Encrypted Local Storage
 
-Messenger
+AES encryption before persistence
 
-Instagram
+SQLite database (SQLiteOpenHelper)
 
-SMS
+Stored in private app directory
 
-Other supported apps
+Intrusion Detection
 
-Smart Filtering
-De-duplication algorithm removes system noise and repeated notifications.
+Three incorrect PIN attempts trigger:
 
-Keyword Sniffer
-Real-time text analysis flags sensitive terms (e.g., password, code, bank) with a red warning badge ⚠️.
+Silent front-camera capture (CameraX)
 
-3️⃣ Secure Storage 🔒
+Local image storage
 
-AES Encryption
-All intercepted data is encrypted before being written to disk.
+Internal gallery for captured images
 
-SQLite Local Database
-Stored privately and inaccessible to other apps on non-rooted devices.
+Sensor-Based Lock Mechanism
 
-4️⃣ Intrusion Detection & Surveillance 📸
+Accelerometer monitoring (SensorManager)
 
-Honeypot Logic
-Calculator operates normally during standard usage.
+Rapid shake triggers:
 
-Intruder Selfie
-After 3 incorrect PIN attempts:
+Immediate lock
 
-Front camera activates silently
+UI termination
 
-No preview
+Data Export Simulation
 
-No shutter sound
+Database export to CSV
 
-Photo stored internally via CameraX
+Android sharing intent used to simulate data exfiltration
 
-Secret Gallery
-Intruder photos stored in a hidden internal vault gallery.
-
-5️⃣ Physical Security & Exfiltration 🏃‍♂️
-
-Panic Shake (Kill Switch)
-Uses Accelerometer via SensorManager.
-A strong shake immediately:
-
-Locks the vault
-
-Crashes the UI to the home screen
-
-Data Exfiltration Simulation
-Entire encrypted database can be exported as a CSV file using Android's sharing intent.
-
-🛠️ Tech Stack & Architecture
+Architecture
 
 Language: Java
-Minimum SDK: API 24 (Android 7.0)
+Minimum SDK: API 24
 Target SDK: API 35
 
-Core Components
+Core Components:
 
-NotificationListenerService – Background data interception
+NotificationListenerService
 
-SQLiteOpenHelper – Database management
+SQLiteOpenHelper
 
-CameraX – Background photography
+CameraX
 
-SensorManager – Motion detection
+SensorManager
 
-RecyclerView – Data visualization
+RecyclerView
 
-AES Encryption – Data protection
+AES Encryption module
 
-🔐 How to Access the Vault
-Step 1 – Installation & Permissions
+The system is structured into:
 
-On first launch, grant:
+UI Layer (Calculator + Dashboard)
+
+Background Service Layer
+
+Encryption & Storage Layer
+
+Sensor Monitoring Layer
+
+Usage
+Initial Setup
+
+Grant the following permissions on first launch:
 
 Notification Access
 
 Camera Access
 
-Step 2 – Unlocking the Vault
+Without these permissions, core functionality will not operate.
 
-Open the Calculator.
+Accessing the Dashboard
 
-Enter the secret PIN: 1337
+Open the Calculator interface
+
+Enter 1337
 
 Press =
 
-You are now inside the Command & Control (C2) dashboard.
+Successful authentication opens the internal dashboard.
 
-Step 3 – Inside the Vault
+Dashboard Capabilities
 
-Dashboard
-View:
+View intercepted messages
 
-Total messages
+Identify flagged sensitive content
 
-Suspicious flagged items
+View captured intrusion attempts
 
-Top active app
+Export database as CSV
 
-Logs
-Scroll intercepted messages (red = sensitive).
+Wipe stored data
 
-Intruders
-Click VIEW INTRUDERS to see captured photos.
+Build Configuration
 
-Export
-Click EXPORT DATA to generate CSV file.
+The Release build enables:
 
-Wipe
-Click WIPE DATA to delete all stored evidence.
+R8 code shrinking
 
-Step 4 – Testing Security Measures
+Name obfuscation
 
-Panic Test
-Shake the phone while inside the vault.
-The app locks instantly.
+Unused resource removal
 
-Intruder Test
-Enter a wrong code (e.g., 5555) three times.
-Check the hidden gallery afterward.
+This configuration demonstrates protection against static analysis and reverse engineering.
 
-⚠️ Note on Obfuscation (For Grading)
+The submitted source code remains readable for academic review.
 
-This project follows a Security by Design approach.
+Academic Context
 
-Submitted source code remains readable for academic evaluation.
+This project was developed as part of a Mobile Security course assignment.
+It demonstrates applied offensive security concepts within a controlled environment.
 
-Release APK build enables R8 shrinking and obfuscation.
+Disclaimer
 
-Demonstrates protection against static analysis and reverse engineering.
-
-⚖️ Disclaimer
-
-This application is a Proof of Concept (PoC) developed strictly for educational and academic purposes in the field of Mobile Security.
-
-It is not intended for malicious use.
-The developer assumes no responsibility for misuse of this software.
+This repository contains a Proof-of-Concept implementation for academic purposes only.
+The author does not support or encourage misuse of the demonstrated techniques.
