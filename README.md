@@ -1,182 +1,174 @@
-מעולה. הבנתי את הסגנון שאתה רוצה — נקי, מופרד עם קווים, Table of Contents אמיתי, כותרות ברורות, בולטים מסודרים.
+# SecureNotifyVault
 
-הנה גרסה כתובה בדיוק בפורמט כזה:
+SecureNotifyVault is an Android Proof-of-Concept application developed for academic evaluation in Mobile Security.  
+The project demonstrates stealth techniques, encrypted persistence, background monitoring, and intrusion detection mechanisms.
 
-SecureNotifyVault
+---
 
-SecureNotifyVault is an Android Proof-of-Concept application developed for academic evaluation in Mobile Security.
-The project demonstrates stealth behavior, encrypted persistence, background monitoring, and intrusion detection mechanisms.
+## Table of Contents
 
-Table of Contents
+1. [Overview](#overview)
+2. [Core Features](#core-features)
+3. [Architecture](#architecture)
+4. [Usage Guide](#usage-guide)
+5. [Build Configuration](#build-configuration)
+6. [Academic Context](#academic-context)
+7. [Disclaimer](#disclaimer)
 
-Overview
+---
 
-Features
+## Overview
 
-Architecture
-
-Usage
-
-Build Configuration
-
-Academic Context
-
-Disclaimer
-
-Overview
-
-SecureNotifyVault presents a functional Calculator interface while internally demonstrating controlled offensive security techniques.
+SecureNotifyVault presents a functional Calculator interface while internally demonstrating controlled mobile security techniques.
 
 The application:
 
-Monitors incoming notifications
+- Monitors incoming notifications
+- Performs keyword-based analysis
+- Encrypts and stores collected data locally
+- Detects unauthorized access attempts
+- Simulates controlled data export
 
-Performs keyword-based content analysis
+This project was implemented strictly for academic purposes.
 
-Encrypts collected data locally
+---
 
-Detects unauthorized access attempts
+## Core Features
 
-Simulates controlled data export
+### Stealth & Camouflage
 
-This project was implemented strictly for academic and research purposes.
+- Functional Calculator interface (cover layer)
+- Hidden dashboard accessible via secret PIN
+- Excluded from Recent Apps (`android:excludeFromRecents="true"`)
+- Release build obfuscated using R8
 
-Features
-Stealth Behavior
+---
 
-Calculator-based disguise interface
+### Notification Monitoring
 
-Hidden dashboard accessible via secret PIN
+- Implemented using `NotificationListenerService`
+- De-duplication filtering for system noise
+- Keyword-based flagging of sensitive content
 
-Excluded from Recent Apps (excludeFromRecents)
+---
 
-Release build obfuscated using R8
+### Encrypted Local Storage
 
-Notification Monitoring
+- AES encryption before database persistence
+- SQLite database (`SQLiteOpenHelper`)
+- Stored in private application directory
 
-Implemented via NotificationListenerService
+---
 
-Filters duplicate/system notifications
+### Intrusion Detection
 
-Flags predefined sensitive keywords
+- Three incorrect PIN attempts trigger:
+  - Silent front camera capture (CameraX)
+  - Local image storage
+- Internal gallery for reviewing captured attempts
 
-Encrypted Local Storage
+---
 
-AES encryption before persistence
+### Sensor-Based Lock Mechanism
 
-SQLite database (SQLiteOpenHelper)
+- Accelerometer monitoring via `SensorManager`
+- Rapid shake triggers:
+  - Immediate vault lock
+  - UI termination
 
-Stored in private app directory
+---
 
-Intrusion Detection
+### Data Export Simulation
 
-Three incorrect PIN attempts trigger:
+- Database export to CSV format
+- Android sharing intent integration
+- Demonstrates controlled exfiltration scenario
 
-Silent front-camera capture (CameraX)
+---
 
-Local image storage
+## Architecture
 
-Internal gallery for captured images
+**Language:** Java  
+**Minimum SDK:** API 24  
+**Target SDK:** API 35  
 
-Sensor-Based Lock Mechanism
+### Core Components
 
-Accelerometer monitoring (SensorManager)
+- `NotificationListenerService`
+- `SQLiteOpenHelper`
+- `CameraX`
+- `SensorManager`
+- `RecyclerView`
+- AES Encryption Module
 
-Rapid shake triggers:
+### System Layers
 
-Immediate lock
+- UI Layer (Calculator + Dashboard)
+- Background Service Layer
+- Encryption & Storage Layer
+- Sensor Monitoring Layer
 
-UI termination
+---
 
-Data Export Simulation
+## Usage Guide
 
-Database export to CSV
+### 1. Installation & Permissions
 
-Android sharing intent used to simulate data exfiltration
+Upon first launch, grant:
 
-Architecture
-
-Language: Java
-Minimum SDK: API 24
-Target SDK: API 35
-
-Core Components:
-
-NotificationListenerService
-
-SQLiteOpenHelper
-
-CameraX
-
-SensorManager
-
-RecyclerView
-
-AES Encryption module
-
-The system is structured into:
-
-UI Layer (Calculator + Dashboard)
-
-Background Service Layer
-
-Encryption & Storage Layer
-
-Sensor Monitoring Layer
-
-Usage
-Initial Setup
-
-Grant the following permissions on first launch:
-
-Notification Access
-
-Camera Access
+- Notification Access
+- Camera Access
 
 Without these permissions, core functionality will not operate.
 
-Accessing the Dashboard
+---
 
-Open the Calculator interface
+### 2. Unlocking the Hidden Dashboard
 
-Enter 1337
+1. Open the Calculator interface
+2. Enter: `1337`
+3. Press `=`
 
-Press =
+If authentication succeeds, the internal dashboard will open.
 
-Successful authentication opens the internal dashboard.
+---
 
-Dashboard Capabilities
+### 3. Dashboard Capabilities
 
-View intercepted messages
+- View intercepted notifications
+- Identify flagged sensitive messages
+- View captured intrusion attempts
+- Export encrypted database
+- Wipe all stored data
 
-Identify flagged sensitive content
+---
 
-View captured intrusion attempts
+### 4. Testing Security Mechanisms
 
-Export database as CSV
+**Panic Test:**  
+Shake the device rapidly while inside the dashboard.
 
-Wipe stored data
+**Intrusion Test:**  
+Enter an incorrect PIN three times from the Calculator screen.
 
-Build Configuration
+---
+
+## Build Configuration
 
 The Release build enables:
 
-R8 code shrinking
+- R8 code shrinking
+- Name obfuscation
+- Removal of unused resources
 
-Name obfuscation
+This demonstrates mitigation against static analysis and reverse engineering.
 
-Unused resource removal
+The submitted source version remains readable for academic grading.
 
-This configuration demonstrates protection against static analysis and reverse engineering.
+---
 
-The submitted source code remains readable for academic review.
-
-Academic Context
+## Academic Context
 
 This project was developed as part of a Mobile Security course assignment.
-It demonstrates applied offensive security concepts within a controlled environment.
 
-Disclaimer
-
-This repository contains a Proof-of-Concept implementation for academic purposes only.
-The author does not support or encourage misuse of the demonstrated techniques.
+It demonstrates applied
